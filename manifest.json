@@ -1,0 +1,26 @@
+{
+    "name": "Demo Chrome extension",
+    "description": "a demo Extension created by Li jia li",
+    "version": "1.0",
+    "manifest_version": 2,
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "permissions": ["storage", "activeTab", "declarativeContent"],
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/GULULU.png",
+            "48": "/images/GULULU.png",
+            "128": "/images/GULULU.png"
+        },
+        "default_title": "JIALI_POPUP"
+    },
+    "icons": {
+        "16": "/images/GULULU.png",
+        "48": "/images/GULULU.png",
+        "128": "/images/GULULU.png"
+    },
+    "options_page": "options.html"
+}
