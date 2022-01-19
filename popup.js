@@ -15,21 +15,25 @@ changeColor.onclick = function(element) {
         // );
       
         // 内容脚本文件注入
-        // chrome.tabs.executeScript({
-        //   file: 'content-script.js'
-        // });
+        chrome.tabs.executeScript({
+          file: 'content-script.js'
+        });
       
         // 与扩展自身通信
-      chrome.storage.sync.set({'background': color })
+      // let bg = chrome.extension.getBackgroundPage();
+      // bg.test();
+
+      // 与内容脚本通信
+      chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (res) {
+        console.log(res.farewell)
+      })
     });
 };
 
-window.addEventListener("message", function (event) {
-  if (event.source != window) {
-      return;
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    alert("接收到内容脚本的消息:" + sender.tab.url)
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
   }
-  if (event.data.type && (event.data.type == "FROM_PAGE")) {
-    changeColor.style.backgroundColor = '#e1f3d8'
-    changeColor.innerText = '更改成功!'
-  }
-})
+);
