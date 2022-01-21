@@ -3,7 +3,7 @@
     <div>
       <p>{{ defaultText }}</p>
       <img :src="src"/>
-      <el-button type="primary" @click.stop="refresh">Go To</el-button>
+      <el-button type="primary" @click.stop="refresh">Go To WAPlus Sender</el-button>
     </div>
   </div>
 </template>
