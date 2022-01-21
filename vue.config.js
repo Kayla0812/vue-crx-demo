@@ -41,6 +41,15 @@ module.exports = {
           }
         }
       }
+    },
+    i18n: {
+      // 当前语言环境
+      locale: process.env.VUE_APP_I18N_LOCALE,
+      // 当当前语言环境不支持的时候的后备语言
+      fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE,
+      // localeDir: undefined,
+      // enableInSFC: undefined,
+      // enableBridge: undefined
     }
   }
 }
