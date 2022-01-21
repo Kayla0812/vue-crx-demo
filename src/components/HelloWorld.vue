@@ -1,14 +1,30 @@
 <template>
   <div>
-    <p>{{ defaultText }}</p>
+    <div>
+      <p>{{ defaultText }}</p>
+      <img :src="src"/>
+      <el-button type="primary" @click.stop="refresh">Go To</el-button>
+    </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'HelloWorld',
+  data () {
+    return {
+      src: ''
+    }
+  },
+  methods: {
+    refresh () {
+      chrome.tabs.create({
+        url: 'https://waplus.io/'
+      })
+    }
+  },
   mounted () {
-    browser.runtime.sendMessage({})
+    let url = chrome.extension.getURL("icons/wap.jpg")
+    this.src = url;
   },
   computed: {
     defaultText () {
@@ -18,8 +34,15 @@ export default {
 }
 </script>
 
-<style scoped>
-p {
-  font-size: 20px;
-}
+<style lang="stylus" scoped>
+  $font-size = 28px
+  div
+    font-size $font-size
+    color #000
+    text-align center
+  img 
+    width 300px
+    height 200px
+    display block
+    margin 0px auto
 </style>
